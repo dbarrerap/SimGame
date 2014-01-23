@@ -94,6 +94,8 @@ public class Main {
                     System.out.println(p1.iWantToSleep());
                 }
                 break;
+            default:
+                System.out.println("Sorry, I don't understand the command... Try Again!");
         }
     }
 }
