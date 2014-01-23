@@ -10,10 +10,10 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println(p1.personalData());
-        while (option!=0) {
+        while (option != 0) {
             printMenu();
         }
-        
+
     }
 
     private static void printMenu() {
@@ -35,7 +35,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         option = sc.nextInt();
 
-        switch (option){
+        switch (option) {
             case 1:
                 System.out.println("Status of Sim:");
                 System.out.print("Energy:");
@@ -93,7 +93,6 @@ public class Main {
                 } else {
                     System.out.println(p1.iWantToSleep());
                 }
-
                 break;
         }
     }
