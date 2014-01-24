@@ -4,21 +4,23 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by dbarrera on 1/21/14.
+ * Created by Docentes on 23/01/14.
  */
 public class Person {
+    private final static int MAX_ATTR = 10;
+    private final static int DEF_ATTR = 5;
+    private final static int MIN_ATTR = 1;
 
-    static int MAX_ATTR = 100;
-    static int DEF_ATTR = 50;
+    private ArrayList<String> phrases = new ArrayList<String>();
+    private Random rn = new Random();
 
-    ArrayList<String> phrases = new ArrayList<String>();
-    Random rn = new Random();
-
-    String name, gender;
-    int age, stamina, hunger, social, bladder, fun;
+    private String name, gender;
+    private int age, stamina, hunger, social, bladder, fun;
 
     public Person() {
-        stamina = hunger = social = bladder = fun = DEF_ATTR;
+        stamina = MAX_ATTR;
+        hunger = social = fun = DEF_ATTR;
+        bladder = MIN_ATTR;
         setPhrases();
     }
 
@@ -27,7 +29,9 @@ public class Person {
         this.gender = gender;
         this.age = age;
 
-        stamina = hunger = social = bladder = fun = DEF_ATTR;
+        stamina = MAX_ATTR;
+        hunger = social = fun = DEF_ATTR;
+        bladder = MIN_ATTR;
         setPhrases();
     }
 
@@ -65,93 +69,116 @@ public class Person {
         return fun;
     }
 
+    public void setPersonalData(String name, String gender, int age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+
     public void eat() {
-        this.hunger -= rn.nextInt(75);
-        if (this.hunger < 0)
-            this.hunger = 0;
-        this.stamina -= rn.nextInt(10);
-        if (this.stamina < 0)
-            this.stamina = 0;
-        this.bladder += rn.nextInt(10);
-        if (this.bladder > MAX_ATTR)
-            this.bladder = MAX_ATTR;
-        this.social -= rn.nextInt(25);
-        if (this.social < 0)
-            this.social = 0;
+        hunger -= 7;
+        if (hunger < 0)
+            hunger = 0;
+        stamina -= 2;
+        if (stamina < 0)
+            stamina = 0;
+        bladder += 3;
+        if (bladder > MAX_ATTR)
+            bladder = MAX_ATTR;
+        social -= 1;
+        if (social < 0)
+            social = 0;
+        fun -= 2;
+        if (fun < 0)
+            fun = 0;
     }
 
     public void sleep() {
-        this.stamina = MAX_ATTR;
-        this.hunger += rn.nextInt(25);
-        if (this.hunger > MAX_ATTR)
-            this.hunger = MAX_ATTR;
-        this.bladder += rn.nextInt(45);
-        if (this.bladder > MAX_ATTR)
-            this.bladder = MAX_ATTR;
-        this.social -= rn.nextInt(35);
-        if (this.social < 0)
-            this.social = 0;
+        stamina = MAX_ATTR;
+        hunger += 2;
+        if (hunger > MAX_ATTR)
+            hunger = MAX_ATTR;
+        bladder += 4;
+        if (bladder > MAX_ATTR)
+            bladder = MAX_ATTR;
+        social -= 3;
+        if (social < 0)
+            social = 0;
+        fun -= 3;
+        if (fun < 0)
+            fun = 0;
     }
 
     public String talk() {
-        this.social += rn.nextInt(45);
-        if (this.social > MAX_ATTR)
-            this.social = MAX_ATTR;
-        this.stamina -= rn.nextInt(10);
-        if (this.stamina < 0)
-            this.stamina = 0;
-        this.bladder += rn.nextInt(10);
-        if (this.bladder > MAX_ATTR)
-            this.bladder = MAX_ATTR;
+        social += 3;
+        if (social > MAX_ATTR)
+            social = MAX_ATTR;
+        stamina -= 1;
+        if (stamina < 0)
+            stamina = 0;
+        bladder += 1;
+        if (bladder > MAX_ATTR)
+            bladder = MAX_ATTR;
         return phrases.get(rn.nextInt(phrases.size()));
     }
 
     public void goToBathroom() {
-        this.bladder = 0;
-        this.stamina -= rn.nextInt(10);
-        if (this.stamina < 0)
-            this.stamina = 0;
-        this.fun -= rn.nextInt(10);
-        if (this.fun < 0)
-            this.fun = 0;
-        this.social -= rn.nextInt(15);
-        if (this.social < 0)
-            this.social = 0;
+        bladder = 0;
+        stamina -= 1;
+        if (stamina < 0)
+            stamina = 0;
+        fun -= 1;
+        if (fun < 0)
+            fun = 0;
+        social -= 1;
+        if (social < 0)
+            social = 0;
     }
 
     public void party() {
-        this.fun += rn.nextInt(65);
-        if (this.fun > MAX_ATTR)
-            this.fun = MAX_ATTR;
-        this.stamina -= rn.nextInt(25);
-        if (this.stamina < 0)
-            this.stamina = 0;
-        this.bladder += rn.nextInt(25);
-        if (this.bladder > MAX_ATTR)
-            this.bladder = MAX_ATTR;
+        fun += 6;
+        if (fun > MAX_ATTR)
+            fun = MAX_ATTR;
+        stamina -= 4;
+        if (stamina < 0)
+            stamina = 0;
+        bladder += 3;
+        if (bladder > MAX_ATTR)
+            bladder = MAX_ATTR;
     }
 
     public void exercise() {
-        this.stamina -= rn.nextInt(75);
-        if (this.stamina < 0)
-            this.stamina = 0;
-        this.fun -= rn.nextInt(25);
-        if (this.fun < 0)
-            this.fun = 0;
-        this.social -= rn.nextInt(15);
-        if (this.social < 0)
-            this.social = 0;
+        stamina -= 6;
+        if (stamina < 0)
+            stamina = 0;
+        fun -= 4;
+        if (fun < 0)
+            fun = 0;
+        social -= 2;
+        if (social < 0)
+            social = 0;
+        hunger += 3;
+        if (hunger > MAX_ATTR)
+            hunger = MAX_ATTR;
     }
 
     public boolean tired() {
-        return this.stamina < 15;
+        return stamina <= 1;
+    }
+
+    public boolean hungry() {
+        return hunger >= 9;
     }
 
     public String iWantToSleep() {
         return "I want to sleep!!!";
     }
 
-    public String personalData() {
-        return this.name + ", " + this.gender + ", " + this.age;
+    public String iWantToEat() {
+        return "I want to eat!!!";
+    }
+
+    public String getPersonalData() {
+        return name + ", " + gender + ", " + age;
     }
 }
