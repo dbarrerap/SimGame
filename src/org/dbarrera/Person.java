@@ -1,17 +1,24 @@
 package org.dbarrera;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Docentes on 23/01/14.
+ * Created by dbarrerap on 23/01/14.
+ * Class: Person
+ * Methods: eat(), sleep(), talk(), goToBathroom(), party(), exercise()
  */
 public class Person {
     private final static int MAX_ATTR = 10;
     private final static int DEF_ATTR = 5;
     private final static int MIN_ATTR = 1;
 
-    private ArrayList<String> phrases = new ArrayList<String>();
+    private String[] phrases = {"Hi!", "How you doin'?",
+                                "Snake? Snake! SNAAAKEEE!!!",
+                                "Frankly, my dear, I don't give a damn.",
+                                "Toto, I've got a feeling we're not in Kansas anymore.",
+                                "Go ahead, make my day.",
+                                "Fasten your seatbelts. It's going to be a bumpy night.",
+                                "Show me the money!"};
     private Random rn = new Random();
 
     private String name, gender;
@@ -21,7 +28,6 @@ public class Person {
         stamina = MAX_ATTR;
         hunger = social = fun = DEF_ATTR;
         bladder = MIN_ATTR;
-        setPhrases();
     }
 
     public Person(String name, String gender, int age) {
@@ -32,21 +38,6 @@ public class Person {
         stamina = MAX_ATTR;
         hunger = social = fun = DEF_ATTR;
         bladder = MIN_ATTR;
-        setPhrases();
-    }
-
-    private void setPhrases() {
-        phrases.add("How you doin'?");
-        phrases.add("There's a snake in my boot!");
-        phrases.add("To infinity and beyond!");
-        phrases.add("Hi!");
-        phrases.add("...");
-        phrases.add("Snake? Snake! SNAAAKEEE!!!");
-        phrases.add("Frankly, my dear, I don't give a damn.");
-        phrases.add("Toto, I've got a feeling we're not in Kansas anymore.");
-        phrases.add("Go ahead, make my day.");
-        phrases.add("Fasten your seatbelts. It's going to be a bumpy night.");
-        phrases.add("Show me the money!");
     }
 
     public int getStamina() {
@@ -67,12 +58,6 @@ public class Person {
 
     public int getFun() {
         return fun;
-    }
-
-    public void setPersonalData(String name, String gender, int age) {
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
     }
 
     public void eat() {
@@ -109,6 +94,18 @@ public class Person {
             fun = 0;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String talk() {
         social += 3;
         if (social > MAX_ATTR)
@@ -119,7 +116,8 @@ public class Person {
         bladder += 1;
         if (bladder > MAX_ATTR)
             bladder = MAX_ATTR;
-        return phrases.get(rn.nextInt(phrases.size()));
+        return phrases[rn.nextInt(phrases.length + 1)];
+
     }
 
     public void goToBathroom() {
